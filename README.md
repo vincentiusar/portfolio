@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vincentius Arnold Fridolin — Portfolio
 
-## Getting Started
+A dark, editorial portfolio built with React + Vite. No UI framework or extra
+animation library — motion is handled with plain CSS transitions/keyframes and
+a couple of small hooks, so the project stays light and easy to read.
 
-First, run the development server:
+## Run it locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open the local URL Vite prints (usually `http://localhost:5173`).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To build a static production bundle:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run preview   # serve the built files locally to sanity-check
+```
 
-## Learn More
+The `dist/` folder that comes out of `npm run build` is ready to deploy to any
+static host (Vercel, Netlify, GitHub Pages, S3, etc).
 
-To learn more about Next.js, take a look at the following resources:
+## Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/
+  data/profile.js        ← all copy & content lives here — edit this file first
+  hooks/useReveal.js      ← scroll-reveal IntersectionObserver hook
+  components/
+    Nav.jsx
+    Hero.jsx
+    DeviceFarmGrid.jsx    ← the animated signature element in the hero
+    About.jsx
+    Experience.jsx
+    ExperienceCard.jsx
+    ProjectHighlight.jsx
+    Skills.jsx
+    Education.jsx
+    Awards.jsx
+    Footer.jsx
+    Icons.jsx             ← small inline SVG icon set
+  App.jsx
+  main.jsx
+  index.css               ← design tokens + all styles
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Editing content
 
-## Deploy on Vercel
+Everything you'd want to update — name, roles, projects, skills, education,
+awards — lives in `src/data/profile.js`. Components just render that data, so
+you shouldn't need to touch component files for a content change.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Design notes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Palette: warm ink-black background with a copper/bronze accent and a teal
+  "signal" color used for device-farm status indicators.
+- Type: Fraunces (serif display) for headings, Inter for body copy,
+  JetBrains Mono for labels, tags, and dates.
+- The hero's animated grid (`DeviceFarmGrid.jsx`) is modeled directly on the
+  real "Remote Device Farm" project from the résumé — it freezes to a static
+  state for users with `prefers-reduced-motion` enabled instead of disabling
+  itself.
