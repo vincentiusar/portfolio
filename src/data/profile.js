@@ -1,6 +1,15 @@
 // Single source of truth for all portfolio content.
 // Edit here to update the site — components just render this data.
 
+import eotq from '@/assets/eotq.jpg'
+import suwon1 from '@/assets/suwon1.jpg'
+import suwon2 from '@/assets/suwon2.jpg'
+import suwon3 from '@/assets/suwon3.jpg'
+import icpc1 from '@/assets/icpc1.jpg'
+import icpc2 from '@/assets/icpc2.jpg'
+import grad1 from '@/assets/grad1.jpg'
+import grad2 from '@/assets/grad2.jpg'
+
 export const profile = {
   name: 'Vincentius Arnold Fridolin',
   role: 'Global Software Engineer',
@@ -8,8 +17,8 @@ export const profile = {
   location: 'Jakarta, Indonesia',
   email: 'vincentiusarnoldfridolin@gmail.com',
   phone: '+62 878 7526 3373',
-  linkedin: 'https://linkedin.com',
-  github: 'https://github.com',
+  linkedin: 'https://www.linkedin.com/in/vincentius-arnold-fridolin-938070201/',
+  github: 'https://github.com/vincentiusar',
   status: 'Employee of the Quarter · Jun 2025',
   tagline:
     "I design the API layer that connects Samsung's plugin ecosystem to real devices, then build the infrastructure that makes sure it never breaks silently.",
@@ -167,6 +176,52 @@ export const awards = [
     org: 'IEEE',
     date: 'Oct 2021',
     detail: 'Placed 589th of 6,435 teams worldwide — 11th of 42 Indonesian teams.',
+  },
+]
+
+// Milestone moments shown as photo cards in the Highlights section.
+// Each has a stable `id` used as the localStorage key for its uploaded photo.
+export const events = [
+  {
+    id: 'employee-of-quarter',
+    title: 'Employee of the Quarter',
+    date: 'June 2025',
+    location: 'Samsung Research Indonesia · Jakarta',
+    description:
+      'Recognized company-wide for keeping several concurrent projects healthy under a heavy workload.',
+    image: [eotq],
+  },
+  {
+    id: 'samsung-hq-suwon',
+    title: 'On-site at Samsung HQ',
+    date: '2024',
+    location: 'Suwon, South Korea',
+    description:
+      'Spent about a month at HQ leading the urgent migration of the plugin automation testing infrastructure to the Indonesia team.',
+    image: [suwon2, suwon1, suwon3],
+  },
+  {
+    id: 'icpc-2022',
+    title: 'ICPC 2022',
+    date: 'November 2022',
+    location: 'Bina Nusantara University',
+    description: 'Competed with my team and placed in the top 40 out of 417 teams.',
+    image: [icpc1, icpc2],
+  },
+  {
+    id: 'ieeextreme-2021',
+    title: 'IEEEXtreme 15.0',
+    date: 'October 2021',
+    location: 'Global competition',
+    description: 'Placed 589th of 6,435 teams worldwide — 11th of 42 Indonesian teams.',
+  },
+  {
+    id: 'graduation',
+    title: 'Graduated Telkom University',
+    date: 'August 2023',
+    location: 'Bandung, Jawa Barat',
+    description: 'Finished my B.Sc. in Computer Science with a 3.95 GPA.',
+    image: [grad1, grad2],
   },
 ]
 

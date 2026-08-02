@@ -5,6 +5,7 @@ import Experience from './components/Experience'
 import Skills from './components/Skills'
 import Education from './components/Education'
 import Awards from './components/Awards'
+import Events from './components/Events'
 import Footer from './components/Footer'
 
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
         <Experience />
         <Skills />
         <Education />
+        <Events />
         <Awards />
       </main>
       <Footer />

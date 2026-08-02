@@ -1,8 +1,12 @@
 # Vincentius Arnold Fridolin — Portfolio
 
-A dark, editorial portfolio built with React + Vite. No UI framework or extra
-animation library — motion is handled with plain CSS transitions/keyframes and
-a couple of small hooks, so the project stays light and easy to read.
+A dark, editorial portfolio built with React + Vite, styled with Tailwind CSS.
+Most of the site uses plain CSS (see `src/index.css`), but the photo-upload
+avatar, event cards, and lightbox are built with **shadcn/ui** components
+(Avatar, Card, Button, Dialog — all in `src/components/ui/`) on top of Radix
+primitives, so they're easy to restyle or extend with more shadcn components
+later (`npx shadcn@latest add <component>` will work out of the box thanks to
+`components.json`).
 
 ## Run it locally
 
@@ -27,25 +31,54 @@ static host (Vercel, Netlify, GitHub Pages, S3, etc).
 
 ```
 src/
-  data/profile.js        ← all copy & content lives here — edit this file first
-  hooks/useReveal.js      ← scroll-reveal IntersectionObserver hook
+  data/profile.js          ← all copy & content lives here — edit this file first, includes `events`
+  hooks/
+    useReveal.js           ← scroll-reveal IntersectionObserver hook
+    useLocalImage.js       ← persists an uploaded photo to localStorage
+  lib/
+    utils.js               ← shadcn's `cn()` class-merging helper
+    image.js               ← resizes an uploaded photo before storing it
   components/
+    ui/                    ← shadcn/ui primitives (avatar, card, button, dialog)
     Nav.jsx
     Hero.jsx
-    DeviceFarmGrid.jsx    ← the animated signature element in the hero
+    DeviceFarmGrid.jsx     ← the animated signature element in the hero
+    ProfilePhoto.jsx       ← click-to-upload avatar in the hero
     About.jsx
     Experience.jsx
     ExperienceCard.jsx
     ProjectHighlight.jsx
     Skills.jsx
     Education.jsx
+    Events.jsx             ← "Highlights" section of photo cards
+    EventCard.jsx          ← single highlight card with upload + lightbox
     Awards.jsx
     Footer.jsx
-    Icons.jsx             ← small inline SVG icon set
+    Icons.jsx              ← small inline SVG icon set
   App.jsx
   main.jsx
-  index.css               ← design tokens + all styles
+  index.css                ← Tailwind directives + design tokens + all styles
 ```
+
+## Profile photo & highlight photos
+
+The hero avatar and the photo slots in the **Highlights** section are
+click-to-upload placeholders:
+
+- Click the avatar or any dashed "Add photo" box, pick an image, and it
+  appears immediately, resized and saved to your browser's `localStorage`.
+- It'll still be there next time you open the site **in that same browser**.
+
+**Important:** this is a local preview tool, not a real upload — nothing
+leaves your browser. If you deploy this site, visitors will *not* see the
+photos you added this way; localStorage is private per-device. To make a
+photo permanently visible to everyone:
+
+1. Save the image into `public/` (e.g. `public/profile.jpg`).
+2. In `src/components/ProfilePhoto.jsx` (or `EventCard.jsx` for a highlight),
+   pass that path as a hardcoded `src` instead of relying on the upload, or
+   simply reference it directly from `src/data/profile.js` and wire it in as
+   a prop — whichever is easiest once you're happy with the photo.
 
 ## Editing content
 

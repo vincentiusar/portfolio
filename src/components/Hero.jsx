@@ -1,11 +1,13 @@
 import { profile } from '../data/profile'
 import { MailIcon, PhoneIcon, LinkedInIcon, GithubIcon } from './Icons'
 import DeviceFarmGrid from './DeviceFarmGrid'
+import ProfilePhoto from './ProfilePhoto'
 
 export default function Hero() {
   return (
     <section id="top" className="hero">
       <div className="hero-text">
+        <ProfilePhoto initials="VF" />
         <p className="eyebrow">{profile.role} — {profile.team}</p>
         <h1 className="hero-name">{profile.name}</h1>
         <p className="hero-tagline">{profile.tagline}</p>
